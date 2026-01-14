@@ -1,103 +1,128 @@
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-school.jpg";
+import heroVideo from "@/assets/hero-school.mp4"; 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BookOpen, Users } from "lucide-react";
+import { ArrowRight, BookOpen, Users, GraduationCap } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const Hero = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img
-          src={heroImage}
-          alt="Students learning in classroom"
-          className="w-full h-full object-cover"
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-900">
+      
+      {/* ===== Video Background with Enhanced Masking ===== */}
+      <div className="absolute inset-0 z-0">
+        <video
+          className="w-full h-full object-cover scale-105" // slight scale prevents edge artifacts
+          src={heroVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
         />
-        <div className="absolute inset-0 overlay-dark" />
+        {/* Dynamic Overlay: Darker on edges, clearer in the middle */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-slate-900" />
+        <div className="absolute inset-0 bg-black/20 backdrop-brightness-90" />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 py-20 text-center">
-        <div className="max-w-4xl mx-auto space-y-8">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-primary/20 backdrop-blur-sm border border-primary/30 rounded-full px-4 py-2 animate-fade-up">
-            <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-            <span className="text-primary font-medium text-sm">
+      {/* ===== Content Section ===== */}
+      <div className="relative z-10 container mx-auto px-6 py-24 text-center">
+        <div className="max-w-5xl mx-auto">
+
+          {/* Premium Badge */}
+          <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+            <GraduationCap className="w-5 h-5 text-yellow-400" />
+            <span className="text-white font-semibold text-xs md:text-sm tracking-widest uppercase">
               {t("Excellence in Education Since 2005", "ភាពឆ្នើមក្នុងការអប់រំចាប់តាំងពីឆ្នាំ ២០០៥")}
             </span>
           </div>
 
-          {/* Main Title */}
-          <div className="space-y-4 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-              {t("Welcome to", "សូមស្វាគមន៍មកកាន់សាលា")}{" "}
-              <span className="text-gradient-gold">{t("Golden Future", "អនាគតមាស")}</span>{" "}
-              {t("School", "")}
+          {/* Hero Heading */}
+          <div className="space-y-6 mb-10">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[1.1] tracking-tight animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-100">
+              {t("Empowering Your", "ពង្រឹងសមត្ថភាព")}{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-200">
+                {t("Golden Future", "អនាគតមាស")}
+              </span>
             </h1>
-          </div>
-
-          {/* Tagline */}
-          <div className="space-y-2 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
+            <p className="text-lg md:text-2xl text-white/90 max-w-3xl mx-auto font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
               {t(
-                "Nurturing young minds to become tomorrow's leaders through quality education, innovation, and character development.",
-                "ចិញ្ចឹមបីបាច់កុមារឱ្យក្លាយជាអ្នកដឹកនាំថ្ងៃស្អែក តាមរយៈការអប់រំប្រកបដោយគុណភាព ការច្នៃប្រឌិត និងការអភិវឌ្ឍន៍ចរិតលក្ខណៈ។"
+                "Nurturing young minds through world-class quality education and character development in the heart of Cambodia.",
+                "ចិញ្ចឹមបីបាច់កុមារឱ្យក្លាយជាអ្នកដឹកនាំថ្ងៃស្អែក តាមរយៈការអប់រំប្រកបដោយគុណភាពកម្រិតពិភពលោក។"
               )}
             </p>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
-            <Button className="btn-primary text-lg px-8 py-6 rounded-full group" asChild>
-              <Link to="/about">
-                <BookOpen className="w-5 h-5 mr-2" />
-                {t("Learn More", "ស្វែងយល់បន្ថែម")}
-                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </Button>
-            <Button
-              variant="outline"
-              className="text-lg px-8 py-6 rounded-full border-white/30 text-white hover:bg-white/10 hover:border-white/50 backdrop-blur-sm transition-all"
-              asChild
-            >
-              <Link to="/contact">
-                <Users className="w-5 h-5 mr-2" />
-                {t("Contact Us", "ទំនាក់ទំនង")}
-              </Link>
-            </Button>
-          </div>
+          {/* Action Buttons */}
+ {/* Action Buttons - Forced Row on Mobile */}
+<div className="flex flex-row items-center justify-center gap-3 sm:gap-5 mb-20 animate-in fade-in slide-in-from-bottom-10 duration-1000 delay-300">
+  <Button 
+    size="lg" 
+    className="bg-yellow-500 hover:bg-yellow-600 text-slate-900 text-sm md:text-lg font-bold px-6 md:px-10 py-6 md:py-7 rounded-full shadow-2xl shadow-yellow-500/20 transition-all hover:-translate-y-1 group" 
+    asChild
+  >
+    <Link to="/about">
+      {t("Get Started", "ចាប់ផ្តើម")}
+      <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-2 group-hover:translate-x-2 transition-transform" />
+    </Link>
+  </Button>
+  
+  <Button 
+    size="lg" 
+    variant="outline" 
+    className="bg-white/5 backdrop-blur-md text-white border-white/30 hover:bg-white/10 text-sm md:text-lg font-bold px-6 md:px-10 py-6 md:py-7 rounded-full transition-all hover:-translate-y-1" 
+    asChild
+  >
+    <Link to="/contact">
+      <Users className="w-4 h-4 md:w-5 md:h-5 mr-2" />
+      {t("Inquire", "សាកសួរ")}
+    </Link>
+  </Button>
+</div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 animate-fade-up" style={{ animationDelay: "0.4s" }}>
+          {/* Stats Section with Floating Animation */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 animate-in fade-in zoom-in-95 duration-1000 delay-500">
             {[
-              { value: "20+", label: "Years of Excellence", labelKh: "ឆ្នាំនៃភាពឆ្នើម" },
-              { value: "1,500+", label: "Happy Students", labelKh: "សិស្សរីករាយ" },
-              { value: "100+", label: "Expert Teachers", labelKh: "គ្រូជំនាញ" },
-              { value: "98%", label: "Success Rate", labelKh: "អត្រាជោគជ័យ" },
+              { value: "20+", label: "Years Experience", labelKh: "ឆ្នាំនៃបទពិសោធន៍" },
+              { value: "1.5K+", label: "Active Students", labelKh: "សិស្សសកម្ម" },
+              { value: "100+", label: "Certified Teachers", labelKh: "គ្រូដែលមានវិញ្ញាបនបត្រ" },
+              { value: "98%", label: "Placement Rate", labelKh: "អត្រាជោគជ័យ" },
             ].map((stat, index) => (
               <div
                 key={index}
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-white/10 hover:border-primary/50 transition-all group"
+                className="relative group bg-white/5 backdrop-blur-lg rounded-3xl p-6 border border-white/10 transition-all hover:bg-white/10 hover:border-yellow-500/50"
               >
-                <p className="text-3xl md:text-4xl font-bold text-primary group-hover:scale-110 transition-transform">
+                <div className="absolute -top-3 -right-3 w-12 h-12 bg-yellow-500/10 rounded-full blur-xl group-hover:bg-yellow-500/20 transition-all" />
+                <p className="text-3xl md:text-5xl font-black text-yellow-500 mb-1">
                   {stat.value}
                 </p>
-                <p className="text-white/80 text-sm mt-1">{t(stat.label, stat.labelKh)}</p>
+                <p className="text-white/70 text-xs md:text-sm font-bold uppercase tracking-wider">
+                  {t(stat.label, stat.labelKh)}
+                </p>
               </div>
             ))}
           </div>
+
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2">
-          <div className="w-1.5 h-3 bg-primary rounded-full animate-pulse" />
+      {/* Modern Scroll Indicator */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+        <span className="text-white/30 text-[10px] uppercase tracking-[0.3em] font-bold">Scroll</span>
+        <div className="w-[2px] h-12 bg-gradient-to-b from-yellow-500 to-transparent rounded-full overflow-hidden">
+          <div className="w-full h-1/2 bg-white animate-scroll-move" />
         </div>
       </div>
+
+      <style>{`
+        @keyframes scroll-move {
+          0% { transform: translateY(-100%); }
+          100% { transform: translateY(200%); }
+        }
+        .animate-scroll-move {
+          animation: scroll-move 2s infinite ease-in-out;
+        }
+      `}</style>
     </section>
   );
 };

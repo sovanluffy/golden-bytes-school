@@ -1,0 +1,131 @@
+/* Container & Section */
+.testimonial-section {
+  padding: 60px 20px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+}
+
+.testimonial-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Header Styling */
+.testimonial-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.testimonial-subtitle {
+  color: #ef4444;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  font-size: 11px;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.testimonial-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #003366;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.testimonial-divider {
+  width: 40px;
+  height: 3px;
+  background-color: #ef4444;
+  margin: 0 auto;
+}
+
+/* Grid Layout */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+/* Card Styling */
+.testimonial-card {
+  background: #ffffff;
+  padding: 30px 20px;
+  border-radius: 30px;
+  border: 1px solid rgba(0,0,0,0.03);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Profile Image Wrapper */
+.avatar-ring {
+  position: relative;
+  margin-bottom: 20px;
+  width: 90px;
+  height: 90px;
+  background: #f1f1f1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Typography */
+.student-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #2d3436;
+  margin-bottom: 10px;
+}
+
+.testimonial-quote {
+  font-size: 12px;
+  color: #636e72;
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 20px;
+  /* Limits text to 3 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Red Pill Button */
+.btn-more {
+  margin-top: auto;
+  background-color: #D4AF37;
+  color: rgb(0, 0, 0);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 8px 24px;
+  border-radius: 50px;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+.btn-more:hover {
+  background-color: #d63031;
+  transform: scale(1.05);
+}
