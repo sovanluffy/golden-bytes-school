@@ -6,14 +6,14 @@ import {
   Phone,
   Clock,
   ChevronDown,
-  Facebook,
-  Youtube,
-  Globe,
 } from "lucide-react";
-import { FaTiktok } from "react-icons/fa";
+import { FaFacebook, FaYoutube, FaTiktok } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { cn } from "@/lib/utils";
+
+import enFlag from "@/assets/Flag_of_the_United_Kingdom_(3-5).svg.png";
+import khFlag from "@/assets/Flag_of_Cambodia.svg";
 
 interface NavItem {
   nameEn: string;
@@ -53,6 +53,7 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+
       {/* ===== Top Info Bar ===== */}
       <div className="hidden md:flex justify-between items-center bg-slate-900 text-white/90 text-[13px] px-8 h-9">
         <div className="flex items-center gap-6">
@@ -63,12 +64,12 @@ export default function Navbar() {
             <Clock size={14} className="text-yellow-400" /> 07:30 – 17:00
           </span>
         </div>
-        
+
         <div className="flex items-center gap-4">
           <span className="text-white/50">|</span>
           <div className="flex items-center gap-3">
-            <a href="#" className="hover:text-yellow-400 transition-colors"><Facebook size={15} /></a>
-            <a href="#" className="hover:text-yellow-400 transition-colors"><Youtube size={17} /></a>
+            <a href="#" className="hover:text-yellow-400 transition-colors"><FaFacebook size={15} /></a>
+            <a href="#" className="hover:text-yellow-400 transition-colors"><FaYoutube size={17} /></a>
             <a href="#" className="hover:text-yellow-400 transition-colors"><FaTiktok size={14} /></a>
           </div>
         </div>
@@ -77,7 +78,8 @@ export default function Navbar() {
       {/* ===== Main Navbar ===== */}
       <nav className="bg-white/80 backdrop-blur-md border-b border-slate-200/60 shadow-sm transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          
+
+          {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group transition-transform hover:scale-[1.02]">
             <img
               src="https://notas.goldenschoolhn.com/tema/Defecto/img/golden.png"
@@ -98,7 +100,13 @@ export default function Navbar() {
                 >
                   <button className="flex items-center gap-1.5 font-semibold text-slate-700 group-hover:text-yellow-600 transition-colors">
                     {t(link.nameEn, link.nameKh)}
-                    <ChevronDown size={14} className={cn("transition-transform duration-200", openDropdown === link.nameEn && "rotate-180")} />
+                    <ChevronDown
+                      size={14}
+                      className={cn(
+                        "transition-transform duration-200",
+                        openDropdown === link.nameEn && "rotate-180"
+                      )}
+                    />
                   </button>
 
                   <div className={cn(
@@ -130,15 +138,22 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
-            {/* Desktop-Only Language Switcher (Hidden on Mobile) */}
-            <Button
-              variant="ghost"
-              className="hidden lg:flex items-center gap-2 rounded-full font-bold text-slate-700 hover:bg-slate-100 px-4"
-              onClick={toggleLanguage}
-            >
-              <Globe size={18} className="text-slate-500" />
-              <span>{language.toUpperCase()}</span>
-            </Button>
+
+            {/* Desktop Language Switcher */}
+            <div className="hidden lg:flex items-center gap-2">
+              <Button
+                variant="ghost"
+                className="flex items-center gap-2 rounded-full font-bold text-slate-700 hover:bg-slate-100 px-3 py-2"
+                onClick={toggleLanguage}
+              >
+                <img
+                  src={language === "en" ? enFlag : khFlag}
+                  alt={language === "en" ? "English" : "Khmer"}
+                  className="w-5 h-5 rounded-full object-cover"
+                />
+                <span>{language.toUpperCase()}</span>
+              </Button>
+            </div>
 
             <Button
               className="hidden md:flex bg-yellow-500 hover:bg-yellow-600 text-white font-bold px-6 py-5 rounded-full shadow-md shadow-yellow-200 transition-all hover:-translate-y-0.5"
@@ -165,13 +180,14 @@ export default function Navbar() {
         "fixed inset-0 bg-slate-900/40 backdrop-blur-sm lg:hidden transition-opacity duration-300",
         menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       )} onClick={() => setMenuOpen(false)}>
-        <div 
+        <div
           className={cn(
             "fixed right-0 top-0 h-full w-[280px] bg-white shadow-2xl transition-transform duration-300 ease-out flex flex-col",
             menuOpen ? "translate-x-0" : "translate-x-full"
           )}
           onClick={(e) => e.stopPropagation()}
         >
+          {/* Header */}
           <div className="p-6 flex items-center justify-between border-b">
             <span className="font-bold text-slate-800">{t("Menu", "មីនុយ")}</span>
             <Button variant="ghost" size="icon" onClick={() => setMenuOpen(false)}>
@@ -180,33 +196,37 @@ export default function Navbar() {
           </div>
 
           <div className="flex-1 overflow-y-auto p-4 space-y-2">
-            {/* Mobile Language Switcher Section */}
+
+            {/* Mobile Language Switcher */}
             <div className="px-3 py-2 mb-4 bg-slate-50 rounded-xl">
               <p className="text-[12px] uppercase tracking-wider text-slate-400 font-bold mb-2 ml-1">
                 {t("Language", "ភាសា")}
               </p>
               <div className="flex gap-2">
-                <button 
-                  onClick={language === 'kh' ? toggleLanguage : undefined}
+                <button
+                  onClick={language === "kh" ? toggleLanguage : undefined}
                   className={cn(
-                    "flex-1 py-2 rounded-lg font-bold transition-all text-sm",
-                    language === 'en' ? "bg-white shadow-sm text-yellow-600" : "text-slate-500 hover:bg-slate-100"
+                    "flex-1 py-2 rounded-lg font-bold transition-all text-sm flex items-center justify-center gap-2",
+                    language === "en" ? "bg-white shadow-sm text-yellow-600" : "text-slate-500 hover:bg-slate-100"
                   )}
                 >
+                  <img src={enFlag} alt="English" className="w-4 h-4 rounded-full" />
                   English
                 </button>
-                <button 
-                   onClick={language === 'en' ? toggleLanguage : undefined}
+                <button
+                  onClick={language === "en" ? toggleLanguage : undefined}
                   className={cn(
-                    "flex-1 py-2 rounded-lg font-bold transition-all text-sm",
-                    language === 'kh' ? "bg-white shadow-sm text-yellow-600" : "text-slate-500 hover:bg-slate-100"
+                    "flex-1 py-2 rounded-lg font-bold transition-all text-sm flex items-center justify-center gap-2",
+                    language === "kh" ? "bg-white shadow-sm text-yellow-600" : "text-slate-500 hover:bg-slate-100"
                   )}
                 >
+                  <img src={khFlag} alt="Khmer" className="w-4 h-4 rounded-full" />
                   ភាសាខ្មែរ
                 </button>
               </div>
             </div>
 
+            {/* Menu Links */}
             {navLinks.map((link) => (
               <div key={link.nameEn} className="border-b border-slate-50 last:border-none pb-2">
                 {link.dropdown ? (
@@ -242,12 +262,14 @@ export default function Navbar() {
                 )}
               </div>
             ))}
+
           </div>
-          
+
+          {/* Mobile Contact Button */}
           <div className="p-6 bg-slate-50">
-             <Button className="w-full bg-yellow-500 rounded-full font-bold h-12" asChild>
-                <Link to="/contact">{t("Get in Touch", "ទាក់ទងមកយើង")}</Link>
-             </Button>
+            <Button className="w-full bg-yellow-500 rounded-full font-bold h-12" asChild>
+              <Link to="/contact">{t("Get in Touch", "ទាក់ទងមកយើង")}</Link>
+            </Button>
           </div>
         </div>
       </div>

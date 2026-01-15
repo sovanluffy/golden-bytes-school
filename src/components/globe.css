@@ -1,0 +1,115 @@
+/* ===============================
+   GLOBE CONTAINER
+================================ */
+.globe-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #0b0b0b 0%, #000 70%);
+  overflow: hidden;
+}
+
+/* Canvas must fill container */
+.globe-wrapper canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* ===============================
+   HOTSPOT LABEL (PIN TOOLTIP)
+================================ */
+.globe-hotspot-label {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  color: #D4AF37;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  white-space: nowrap;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  transform: translateY(-12px);
+  animation: fadeInUp 0.25s ease-out;
+}
+
+/* ===============================
+   OPTIONAL: ACTIVE / HOVER STATE
+================================ */
+.globe-hotspot-label.active {
+  background: rgba(0, 0, 0, 0.9);
+  color: #ffd66b;
+  border-color: rgba(255, 214, 107, 0.7);
+}
+
+/* ===============================
+   BOTTOM INFO LABEL (LOCATION)
+================================ */
+.globe-info {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+  border-left: 4px solid #D4AF37;
+  padding: 12px 18px;
+  border-radius: 6px;
+  color: #fff;
+  pointer-events: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.globe-info strong {
+  display: block;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.globe-info span {
+  font-size: 0.8rem;
+  color: #D4AF37;
+}
+
+/* ===============================
+   FADE ANIMATIONS
+================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-12px);
+  }
+}
+
+/* ===============================
+   MOBILE OPTIMIZATION
+================================ */
+@media (max-width: 768px) {
+  .globe-hotspot-label {
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+
+  .globe-info {
+    bottom: 12px;
+    left: 12px;
+    padding: 10px 14px;
+  }
+
+  .globe-info strong {
+    font-size: 0.8rem;
+  }
+
+  .globe-info span {
+    font-size: 0.7rem;
+  }
+}
