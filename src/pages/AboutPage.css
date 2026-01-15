@@ -1,0 +1,308 @@
+/* --- CSS Variables & Design Tokens --- */
+:root {
+  --idt-blue: #004a99;
+  --idt-blue-dark: #003366;
+  --idt-gold: #ffb400;
+  --white: #ffffff;
+  --text-main: #2d3436;
+  --text-muted: #636e72;
+  --bg-soft: #f8f9fa;
+  --bg-dark: #001f3f;
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --radius: 16px;
+}
+
+/* --- Global Reset --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: var(--text-main);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-padding {
+  padding: 100px 0;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--idt-blue);
+  text-align: center;
+  margin-bottom: 50px;
+  letter-spacing: -0.5px;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+  position: relative;
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  color: var(--white);
+  background: #000;
+}
+
+.video-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.hero-content {
+  max-width: 700px;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.highlight {
+  color: var(--idt-gold);
+}
+
+.hero-divider {
+  width: 220px;
+  filter: brightness(0) invert(1);
+  margin-bottom: 25px;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin-bottom: 40px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 16px 35px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.btn-primary {
+  background: var(--idt-gold);
+  color: var(--idt-blue);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255, 180, 0, 0.4);
+}
+
+.btn-secondary {
+  border: 2px solid var(--white);
+  color: var(--white);
+}
+
+.btn-secondary:hover {
+  background: var(--white);
+  color: var(--idt-blue);
+}
+
+/* --- Why IDT Grid --- */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.benefit-item {
+  background: var(--white);
+  padding: 40px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid #f0f0f0;
+  transition: var(--transition);
+}
+
+.benefit-item:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-5px);
+  border-color: var(--idt-gold);
+}
+
+.benefit-icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.benefit-item p {
+  font-size: 1rem;
+  color: var(--text-muted);
+}
+
+/* --- Leadership Message --- */
+.bg-soft { background: var(--bg-soft); }
+
+.message-card {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 60px;
+  background: var(--white);
+  padding: 60px;
+  border-radius: 24px;
+  box-shadow: var(--shadow-md);
+  align-items: center;
+}
+
+.leader-info { text-align: center; }
+
+.leader-img {
+  width: 100%;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.leader-info h3 { color: var(--idt-blue); font-size: 1.5rem; }
+
+.leader-title {
+  color: var(--idt-gold);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.leader-message p {
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--text-main);
+  line-height: 1.8;
+  border-left: 5px solid var(--idt-gold);
+  padding-left: 30px;
+}
+
+/* --- Vision & Mission --- */
+.split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.vision-box, .mission-box {
+  padding: 50px;
+  border-radius: var(--radius);
+  color: var(--white);
+}
+
+.vision-box {
+  background: var(--idt-blue);
+}
+
+.mission-box {
+  background: var(--idt-gold);
+  color: var(--idt-blue);
+}
+
+.label-title {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.mission-box ul {
+  list-style: none;
+}
+
+.mission-box li {
+  margin-bottom: 15px;
+  padding-left: 25px;
+  position: relative;
+}
+
+.mission-box li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+/* --- Partner Tags --- */
+.bg-dark { background: var(--bg-dark); }
+
+.partners-marquee {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.partner-tag {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--white);
+  padding: 12px 28px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 500;
+  transition: var(--transition);
+}
+
+.partner-tag:hover {
+  background: var(--idt-gold);
+  color: var(--idt-blue);
+  border-color: var(--idt-gold);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+  .message-card {
+    grid-template-columns: 1fr;
+    padding: 40px;
+    gap: 30px;
+  }
+  
+  .leader-img {
+    max-width: 250px;
+    margin: 0 auto 20px;
+  }
+  
+  .split-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title { font-size: 3rem; }
+  .hero-actions { flex-direction: column; }
+  .section-padding { padding: 60px 0; }
+  .section-title { font-size: 2rem; }
+}
