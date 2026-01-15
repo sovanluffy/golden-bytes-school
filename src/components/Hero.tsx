@@ -28,7 +28,7 @@ const Hero = () => {
       <div className="relative z-10 container mx-auto px-6 py-20 flex flex-col items-center text-center">
         
         {/* Minimalist Badge */}
-        <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-xl border border-white/10 rounded-full px-4 py-1.5 mb-6 animate-in fade-in slide-in-from-bottom-3 duration-1000">
+        <div className="inline-flex items-center gap-2 mt-7 bg-white/10 backdrop-blur-xl border border-white/10 rounded-full px-4 py-1.5 mb-6 animate-in fade-in slide-in-from-bottom-3 duration-1000">
           <GraduationCap className="w-4 h-4 text-yellow-500" />
           <span className="text-white/90 font-medium text-[10px] md:text-xs tracking-[0.2em] uppercase">
             {t("Global Standards", "ស្ដង់ដារសកល")} • 2024
