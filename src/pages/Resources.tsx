@@ -2,6 +2,8 @@ import React from "react";
 import "./Resources.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import heroVideo from "../assets/owEI4q0ARX3SygtqBAIyYNixNDQAkwf5iPCDgW.mp4";
+
 import { 
   FileText, Download, BookOpen, 
   ChevronRight, Globe, LayoutGrid
@@ -42,7 +44,7 @@ export default function Resources() {
         {/* ===== HERO SECTION WITHOUT SEARCH ===== */}
         <header className="res-modern-hero">
           <video autoPlay muted loop playsInline className="hero-video">
-            <source src="/src/assets/school.MP4" type="video/mp4" />
+            <source src={heroVideo} type="video/mp4" />
           </video>
           <div className="hero-content">
             <div className="container">

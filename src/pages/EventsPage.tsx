@@ -3,6 +3,8 @@ import "./Events.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useLanguage } from "../contexts/LanguageContext";
+import heroVideo from "../assets/evebt.mp4";
+
 
 export default function Events() {
   const { t } = useLanguage();
@@ -40,7 +42,7 @@ export default function Events() {
         <section className="events-hero">
           {/* Video Background */}
           <video autoPlay muted loop playsInline className="hero-video">
-            <source src="src/assets/evebt.mp4" type="video/mp4" />
+            <source src={heroVideo} type="video/mp4" />
             {/* Fallback image if video fails to load */}
           </video>
           
