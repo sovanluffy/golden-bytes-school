@@ -5,7 +5,8 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { useLanguage } from "@/contexts/LanguageContext"; // Import your hook
+import { useLanguage } from "@/contexts/LanguageContext";
+import Vievo from "@/assets/Job.mp4" // Import your hook
 
 const CareerPage: React.FC = () => {
   const { t } = useLanguage(); // Access the translation function
@@ -81,7 +82,7 @@ const CareerPage: React.FC = () => {
 
                 <div className="lg:hidden w-full aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white mb-8">
                    <video autoPlay loop muted playsInline className="w-full h-full object-cover">
-                      <source src="src/assets/Job.mp4" type="video/mp4" />
+                      <source src={Vievo} type="video/mp4" />
                    </video>
                 </div>
 
