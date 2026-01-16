@@ -59,7 +59,7 @@ const Hero = () => {
     asChild
   >
     <Link to="/about">
-      {t("Start", "ចាប់ផ្តើម")}
+      {t("Start TO ABOUT", "ចាប់ផ្តើម")}
       <ArrowRight className="w-4 h-4 md:w-5 md:h-5" />
     </Link>
   </Button>

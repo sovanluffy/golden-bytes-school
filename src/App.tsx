@@ -11,10 +11,10 @@ import Career from "./pages/CareerCenter";
 import EventsPage from "./pages/EventsPage";
 import ContactPage from "./pages/ContactPage";
 import ResourcesPage from "./pages/Resources";
-
-
+import CareerPage from "./pages/CareerPage";
 import NotFound from "./pages/NotFound";
-
+import DepartmentPage from "./pages/DepartmentPage";
+import ContactSection from "./components/ContactSection";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -28,7 +28,10 @@ const App = () => (
             <Route path="/" element={<HomePage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/academics" element={<AcademicsPage />} />
+            <Route path="/career" element={<CareerPage />} />
             <Route path="/career-center" element={<Career />} />
+            <Route path="/contact-us" element={<ContactSection />} />
+            <Route path="/:id" element={<DepartmentPage />} />
             <Route path="/resources" element={<ResourcesPage />} />
             <Route path="/events" element={<EventsPage />} />
             <Route path="/contact" element={<ContactPage />} />

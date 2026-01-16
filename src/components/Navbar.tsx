@@ -23,14 +23,14 @@ interface NavItem {
 }
 
 const navLinks: NavItem[] = [
-  { nameEn: "Careers", nameKh: "អាជីព", href: "/careers" },
-  { nameEn: "GovTech", nameKh: "រដ្ឋបច្ចេកវិទ្យា", href: "/govtech" },
+  { nameEn: "Careers", nameKh: "អាជីព", href: "/career" },
   { nameEn: "Events", nameKh: "ព្រឹត្តិការណ៍", href: "/events" },
   { nameEn: "Resources", nameKh: "ធនធាន", href: "/resources" },
   { nameEn: "Career Center", nameKh: "មជ្ឈមណ្ឌលអាជីព", href: "/career-center" },
   {
-    nameEn: "About",
+    nameEn: "About", 
     nameKh: "អំពីពួកយើង",
+    href: "/about",
     dropdown: [
       { nameEn: "Institutes", nameKh: "វិទ្យាស្ថាន", href: "/institutes" },
       { nameEn: "Academic", nameKh: "អកាដាមិច", href: "/academic" },
@@ -54,70 +54,71 @@ export default function Navbar() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 transition-all duration-300">
 
-      {/* ===== Top Info Bar ===== */}
-      <div className="hidden md:flex justify-between items-center bg-slate-900 text-white/90 text-[13px] px-8 h-9">
+      {/* ===== Top Info Bar (Hidden on Mobile) ===== */}
+      <div className="hidden md:flex justify-between items-center bg-slate-900 text-white/90 text-[12px] px-8 h-10 border-b border-white/5">
         <div className="flex items-center gap-6">
-          <span className="flex items-center gap-2 opacity-90 hover:opacity-100 transition-opacity">
-            <Phone size={14} className="text-yellow-400" /> +855 (0)78 523 666
-          </span>
-          <span className="flex items-center gap-2 opacity-90 hover:opacity-100 transition-opacity">
-            <Clock size={14} className="text-yellow-400" /> 07:30 – 17:00
+          <a href="tel:+85578523666" className="flex items-center gap-2 hover:text-orange-400 transition-colors">
+            <Phone size={13} className="text-orange-400" /> +855 (0)78 523 666
+          </a>
+          <span className="flex items-center gap-2 opacity-80">
+            <Clock size={13} className="text-orange-400" /> 07:30 – 17:00
           </span>
         </div>
 
         <div className="flex items-center gap-4">
-          <span className="text-white/50">|</span>
-          <div className="flex items-center gap-3">
-            <a href="#" className="hover:text-yellow-400 transition-colors"><FaFacebook size={15} /></a>
-            <a href="#" className="hover:text-yellow-400 transition-colors"><FaYoutube size={17} /></a>
-            <a href="#" className="hover:text-yellow-400 transition-colors"><FaTiktok size={14} /></a>
+          <div className="flex items-center gap-4 border-r border-white/10 pr-4">
+            <a href="#" className="hover:text-orange-400 transition-colors"><FaFacebook size={14} /></a>
+            <a href="#" className="hover:text-orange-400 transition-colors"><FaYoutube size={16} /></a>
+            <a href="#" className="hover:text-orange-400 transition-colors"><FaTiktok size={13} /></a>
           </div>
+          <button 
+            onClick={toggleLanguage} 
+            className="flex items-center gap-2 hover:text-orange-400 transition-all font-bold uppercase tracking-wider text-[11px]"
+          >
+            <img src={language === "en" ? enFlag : khFlag} className="w-4 h-4 rounded-full object-cover shadow-sm" alt="flag" />
+            {language}
+          </button>
         </div>
       </div>
 
       {/* ===== Main Navbar ===== */}
-      <nav className="bg-white/80 backdrop-blur-md border-b border-slate-200/60 shadow-sm transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <nav className="bg-white/90 backdrop-blur-xl border-b border-slate-200/50 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 md:h-24 flex items-center justify-between gap-4">
 
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group transition-transform hover:scale-[1.02]">
+          {/* Clean Logo: Using object-contain and crisp sizing */}
+          <Link to="/" className="flex-shrink-0 relative z-10">
             <img
               src="https://notas.goldenschoolhn.com/tema/Defecto/img/golden.png"
-              alt="Logo"
-              className="h-14 w-auto object-contain"
+              alt="Golden School Logo"
+              className="h-12 w-auto md:h-16 lg:h-20 transition-all duration-500 transform group-hover:scale-105 select-none"
+              style={{ imageRendering: 'auto' }} // Ensures high quality
             />
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex items-center gap-1">
+          {/* Desktop Navigation Links */}
+          <div className="hidden lg:flex items-center gap-2">
             {navLinks.map((link) =>
               link.dropdown ? (
                 <div
                   key={link.nameEn}
-                  className="relative group py-2 px-3"
+                  className="relative py-2"
                   onMouseEnter={() => setOpenDropdown(link.nameEn)}
                   onMouseLeave={() => setOpenDropdown(null)}
                 >
-                  <button className="flex items-center gap-1.5 font-semibold text-slate-700 group-hover:text-yellow-600 transition-colors">
+                  <button className="flex items-center gap-1.5 px-3 py-2 rounded-xl font-bold text-[15px] text-slate-700 hover:text-orange-600 hover:bg-orange-50/50 transition-all">
                     {t(link.nameEn, link.nameKh)}
-                    <ChevronDown
-                      size={14}
-                      className={cn(
-                        "transition-transform duration-200",
-                        openDropdown === link.nameEn && "rotate-180"
-                      )}
-                    />
+                    <ChevronDown size={14} className={cn("transition-transform duration-300", openDropdown === link.nameEn && "rotate-180")} />
                   </button>
 
                   <div className={cn(
-                    "absolute top-full left-0 w-52 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 z-50 transition-all duration-200 origin-top-left",
-                    openDropdown === link.nameEn ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
+                    "absolute top-full left-0 w-56 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-slate-100 p-2 z-50 transition-all duration-300 origin-top",
+                    openDropdown === link.nameEn ? "opacity-100 scale-100 translate-y-2" : "opacity-0 scale-95 translate-y-0 pointer-events-none"
                   )}>
                     {link.dropdown.map((item) => (
                       <Link
                         key={item.nameEn}
                         to={item.href!}
-                        className="block px-4 py-2.5 text-[15px] text-slate-600 hover:text-yellow-600 hover:bg-slate-50 transition-all"
+                        className="block px-4 py-3 text-[14px] font-semibold text-slate-600 hover:text-orange-600 hover:bg-orange-50 rounded-xl transition-all"
                       >
                         {t(item.nameEn, item.nameKh)}
                       </Link>
@@ -128,7 +129,7 @@ export default function Navbar() {
                 <Link
                   key={link.nameEn}
                   to={link.href!}
-                  className="px-4 py-2 font-semibold text-slate-700 hover:text-yellow-600 transition-colors"
+                  className="px-4 py-2 rounded-xl font-bold text-[15px] text-slate-700 hover:text-orange-600 hover:bg-orange-50/50 transition-all"
                 >
                   {t(link.nameEn, link.nameKh)}
                 </Link>
@@ -136,140 +137,101 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Actions */}
-          <div className="flex items-center gap-2">
-
-            {/* Desktop Language Switcher */}
-            <div className="hidden lg:flex items-center gap-2">
-              <Button
-                variant="ghost"
-                className="flex items-center gap-2 rounded-full font-bold text-slate-700 hover:bg-slate-100 px-3 py-2"
-                onClick={toggleLanguage}
-              >
-                <img
-                  src={language === "en" ? enFlag : khFlag}
-                  alt={language === "en" ? "English" : "Khmer"}
-                  className="w-5 h-5 rounded-full object-cover"
-                />
-                <span>{language.toUpperCase()}</span>
-              </Button>
-            </div>
-
+          {/* Desktop Call to Action */}
+          <div className="flex items-center gap-3">
             <Button
-              className="hidden md:flex bg-yellow-500 hover:bg-yellow-600 text-white font-bold px-6 py-5 rounded-full shadow-md shadow-yellow-200 transition-all hover:-translate-y-0.5"
+              className="hidden sm:flex bg-slate-900 hover:bg-orange-600 text-white font-black px-6 py-6 rounded-2xl shadow-lg transition-all active:scale-95"
               asChild
             >
-              <Link to="/contact">{t("Contact Us", "ទំនាក់ទំនង")}</Link>
+              <Link to="/contact">{t("Apply Now", "ដាក់ពាក្យ")}</Link>
             </Button>
 
-            {/* Mobile Menu Icon */}
+            {/* Mobile Menu Trigger */}
             <Button
               size="icon"
               variant="ghost"
-              className="lg:hidden text-slate-700 ml-1 rounded-full h-11 w-11"
+              className="lg:hidden text-slate-800 bg-slate-100 rounded-2xl h-12 w-12"
               onClick={() => setMenuOpen(!menuOpen)}
             >
-              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+              {menuOpen ? <X size={26} /> : <Menu size={26} />}
             </Button>
           </div>
         </div>
       </nav>
 
-      {/* ===== Mobile Menu Overlay ===== */}
+      {/* ===== Refined Mobile Menu Overlay ===== */}
       <div className={cn(
-        "fixed inset-0 bg-slate-900/40 backdrop-blur-sm lg:hidden transition-opacity duration-300",
-        menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        "fixed inset-0 bg-slate-900/60 backdrop-blur-md lg:hidden transition-all duration-500",
+        menuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
       )} onClick={() => setMenuOpen(false)}>
         <div
           className={cn(
-            "fixed right-0 top-0 h-full w-[280px] bg-white shadow-2xl transition-transform duration-300 ease-out flex flex-col",
-            menuOpen ? "translate-x-0" : "translate-x-full"
+            "fixed right-4 top-4 bottom-4 w-[85%] max-w-[340px] bg-white rounded-[2.5rem] shadow-2xl transition-transform duration-500 ease-in-out overflow-hidden flex flex-col",
+            menuOpen ? "translate-x-0" : "translate-x-[120%]"
           )}
           onClick={(e) => e.stopPropagation()}
         >
-          {/* Header */}
-          <div className="p-6 flex items-center justify-between border-b">
-            <span className="font-bold text-slate-800">{t("Menu", "មីនុយ")}</span>
-            <Button variant="ghost" size="icon" onClick={() => setMenuOpen(false)}>
-              <X size={20} />
-            </Button>
+          {/* Mobile Menu Header */}
+          <div className="p-8 pb-4 flex items-center justify-between">
+             <img src="https://notas.goldenschoolhn.com/tema/Defecto/img/golden.png" alt="logo" className="h-10 w-auto" />
+             <Button variant="ghost" size="icon" className="rounded-full bg-slate-50" onClick={() => setMenuOpen(false)}>
+                <X size={20} />
+             </Button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-4 space-y-2">
-
-            {/* Mobile Language Switcher */}
-            <div className="px-3 py-2 mb-4 bg-slate-50 rounded-xl">
-              <p className="text-[12px] uppercase tracking-wider text-slate-400 font-bold mb-2 ml-1">
-                {t("Language", "ភាសា")}
-              </p>
-              <div className="flex gap-2">
-                <button
-                  onClick={language === "kh" ? toggleLanguage : undefined}
-                  className={cn(
-                    "flex-1 py-2 rounded-lg font-bold transition-all text-sm flex items-center justify-center gap-2",
-                    language === "en" ? "bg-white shadow-sm text-yellow-600" : "text-slate-500 hover:bg-slate-100"
-                  )}
-                >
-                  <img src={enFlag} alt="English" className="w-4 h-4 rounded-full" />
-                  English
+          <div className="flex-1 overflow-y-auto px-6 py-4 space-y-2">
+            {/* Language Switch for Mobile */}
+            <div className="grid grid-cols-2 gap-2 mb-8 p-1 bg-slate-100 rounded-2xl">
+                <button 
+                  onClick={() => language === 'kh' && toggleLanguage()}
+                  className={cn("flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition-all", language === 'en' ? "bg-white text-orange-600 shadow-sm" : "text-slate-500")}>
+                  <img src={enFlag} className="w-4 h-4 rounded-full" /> EN
                 </button>
-                <button
-                  onClick={language === "en" ? toggleLanguage : undefined}
-                  className={cn(
-                    "flex-1 py-2 rounded-lg font-bold transition-all text-sm flex items-center justify-center gap-2",
-                    language === "kh" ? "bg-white shadow-sm text-yellow-600" : "text-slate-500 hover:bg-slate-100"
-                  )}
-                >
-                  <img src={khFlag} alt="Khmer" className="w-4 h-4 rounded-full" />
-                  ភាសាខ្មែរ
+                <button 
+                  onClick={() => language === 'en' && toggleLanguage()}
+                  className={cn("flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-sm transition-all", language === 'kh' ? "bg-white text-orange-600 shadow-sm" : "text-slate-500")}>
+                  <img src={khFlag} className="w-4 h-4 rounded-full" /> KH
                 </button>
-              </div>
             </div>
 
-            {/* Menu Links */}
             {navLinks.map((link) => (
-              <div key={link.nameEn} className="border-b border-slate-50 last:border-none pb-2">
+              <div key={link.nameEn}>
                 {link.dropdown ? (
-                  <>
+                  <div className="space-y-1">
                     <button
                       onClick={() => setOpenDropdown(openDropdown === link.nameEn ? null : link.nameEn)}
-                      className="flex items-center justify-between w-full p-3 font-bold text-slate-700"
+                      className="flex items-center justify-between w-full p-4 rounded-2xl font-black text-slate-800 bg-slate-50 hover:bg-orange-50 transition-colors"
                     >
                       {t(link.nameEn, link.nameKh)}
-                      <ChevronDown size={16} className={cn("transition-transform", openDropdown === link.nameEn && "rotate-180")} />
+                      <ChevronDown size={18} className={cn("transition-transform duration-300", openDropdown === link.nameEn && "rotate-180")} />
                     </button>
-                    {openDropdown === link.nameEn && (
-                      <div className="bg-slate-50 rounded-lg ml-2 mb-2">
-                        {link.dropdown.map((item) => (
-                          <Link
-                            key={item.nameEn}
-                            to={item.href!}
-                            className="block p-3 text-slate-600 pl-6"
-                          >
-                            {t(item.nameEn, item.nameKh)}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </>
+                    <div className={cn(
+                      "overflow-hidden transition-all duration-300 pl-4 space-y-1",
+                      openDropdown === link.nameEn ? "max-h-96 opacity-100 mt-2" : "max-h-0 opacity-0"
+                    )}>
+                      {link.dropdown.map((sub) => (
+                        <Link key={sub.nameEn} to={sub.href!} className="block p-3 font-bold text-slate-500 hover:text-orange-600">
+                          {t(sub.nameEn, sub.nameKh)}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
                 ) : (
                   <Link
                     to={link.href!}
-                    className="block p-3 font-bold text-slate-700"
+                    className="block p-4 rounded-2xl font-black text-slate-800 hover:bg-orange-50 transition-colors"
                   >
                     {t(link.nameEn, link.nameKh)}
                   </Link>
                 )}
               </div>
             ))}
-
           </div>
 
-          {/* Mobile Contact Button */}
-          <div className="p-6 bg-slate-50">
-            <Button className="w-full bg-yellow-500 rounded-full font-bold h-12" asChild>
-              <Link to="/contact">{t("Get in Touch", "ទាក់ទងមកយើង")}</Link>
-            </Button>
+          <div className="p-8 border-t border-slate-100">
+             <Button className="w-full bg-orange-500 hover:bg-orange-600 rounded-2xl h-14 font-black text-lg shadow-lg shadow-orange-200" asChild>
+                <Link to="/contact">{t("Contact Us", "ទំនាក់ទំនង")}</Link>
+             </Button>
           </div>
         </div>
       </div>
