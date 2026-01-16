@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import videoSample from "@/assets/evebt.mp4";
 import { 
   Building2, GraduationCap, Microscope, 
   Lightbulb, ShieldCheck, ChevronLeft, 
@@ -73,7 +74,7 @@ const DepartmentPage = () => {
       <section className="relative h-[85vh] flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video autoPlay loop muted playsInline className="w-full h-full object-cover">
-            <source src="src/assets/evebt.mp4" type="video/mp4" />
+            <source src={videoSample} type="video/mp4" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/60 to-transparent" />
         </div>
