@@ -49,7 +49,7 @@ const ContactPage = () => {
             {/* Video Preview Box */}
             <div className="relative group w-full md:w-[400px] aspect-video rounded-3xl overflow-hidden shadow-2xl bg-slate-200 border-4 border-white">
               <video autoPlay loop muted playsInline className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700">
-                <source src={VIdeo} type="video/mp4" />
+                <source src={VIedo} type="video/mp4" />
               </video>
               <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent transition-all">
                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
